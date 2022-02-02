@@ -1,0 +1,14 @@
+nav{
+    padding: 7px 15px;
+    background-color: rgb(13, 149, 228);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+ul{
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50%;
+}
