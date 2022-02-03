@@ -2,7 +2,8 @@ import React from 'react';
 import CartWidget from './CartWidget/CartWidget';
 import './Navbar.css'
 import ItemListContainer from './../ItemListContainer/ItemListContainer';
-import ItemCount from '../ItemCount';
+import Contador from '../Counter/Counter';
+
 const Navbar = () => {
     return (
         <nav>
@@ -19,7 +20,7 @@ const Navbar = () => {
             <ItemListContainer />
             </div>
             <div>
-            <ItemCount />
+            <Contador />
             </div>
         </nav>
     );
