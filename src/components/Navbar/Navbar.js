@@ -1,8 +1,8 @@
 import React from 'react';
 import CartWidget from './CartWidget/CartWidget';
 import './Navbar.css'
-import ItemListContainer from './../ItemListContainer/ItemListContainer';
-import Contador from '../Counter/Counter';
+// import ItemListContainer from './../ItemListContainer/ItemListContainer';
+import Counter from '../Counter/Counter';
 
 const Navbar = () => {
     return (
@@ -17,10 +17,7 @@ const Navbar = () => {
             <CartWidget />
             </div>
             <div>
-            <ItemListContainer />
-            </div>
-            <div>
-            <Contador />
+            <Counter />
             </div>
         </nav>
     );

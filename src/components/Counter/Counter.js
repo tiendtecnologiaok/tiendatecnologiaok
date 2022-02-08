@@ -13,9 +13,9 @@ export default function Contador() {
             <div>
                 <button onClick={sumar}>+</button>
                 <button onClick={restar}>-</button>
-                
+
             </div>
             <div>{ contador }</div>
         </div>
     );
-};
+}; 
