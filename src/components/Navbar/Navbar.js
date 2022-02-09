@@ -3,6 +3,8 @@ import CartWidget from './CartWidget/CartWidget';
 import './Navbar.css'
 // import ItemListContainer from './../ItemListContainer/ItemListContainer';
 import Counter from '../Counter/Counter';
+import ItemDetailContainer from '../ItemDetailContainer/ItemDetailContainer';
+import ItemDetail from '../ItemDetail/ItemDetail';
 
 const Navbar = () => {
     return (
@@ -18,6 +20,9 @@ const Navbar = () => {
             </div>
             <div>
             <Counter />
+            </div>
+            <div>
+            <ItemDetail />
             </div>
         </nav>
     );
