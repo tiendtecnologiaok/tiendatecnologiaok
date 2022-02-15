@@ -1,7 +1,7 @@
 import React, { useEffect , useState } from 'react';
 
 const ItemListContainer = () => {
-    const [items, setItems] = useState([]);
+    const [traerProductos] = useState([]);
     // const { id } = useParams();
 
     // console.log(id);

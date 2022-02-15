@@ -1,21 +1,39 @@
 import React, { useState } from 'react';
+import './Counter.css';
 
-export default function Contador() {
+const Counter = ({ stock, initial, onAdd }) => {
+    const [number, setNumber] = useState(1);
 
-    const[contador, setContador] = useState(0);
+    const add = () => {
+        number < stock && setNumber(number + 1);
+    };
 
-    const sumar = () => setContador(contador + 1);
-    const restar = () => setContador(contador - 1);
+    const substract = () => {
+        number > initial && setNumber(number - 1);
+    };
 
-    return(
-        <div>
-            <h2>Contador</h2>
-            <div>
-                <button onClick={sumar}>+</button>
-                <button onClick={restar}>-</button>
+    const addToCart = () => {
+        onAdd(number);
+    };
 
+    return (
+        <div className="container-buton">
+            <div className="container-add-substract">
+                <button onClick={add}>+</button>
+                <p>{number}</p>
+                <button onClick={substract}>-</button>
             </div>
-            <div>{ contador }</div>
+            <div>
+                <button
+                    disabled={number === 0}
+                    className={number === 0 ? 'disabled' : 'add'}
+                    onClick={addToCart}
+                >
+                    Agregar al carrito
+                </button>
+            </div>
         </div>
     );
-}; 
+};
+
+export default Counter;

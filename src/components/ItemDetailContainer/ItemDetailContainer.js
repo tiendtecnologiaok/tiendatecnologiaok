@@ -1,23 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import ItemDetail from './ItemDetail';
-import { traerProductos } from 'react';
+import { traerProductos } from '../../api/products';
+import ItemDetail from '../ItemDetail/ItemDetail';
 
 const ItemDetailContainer = () => {
-    const [loading, setLoading] = useState(true);
     const [item, setItem] = useState({});
+    const [loading, setLoading] = useState(true);
     const { id } = useParams();
 
+    //tarea pesada
     useEffect(() => {
-        setLoading(true);
         traerProductos
             .then((res) => {
-                const unicoProd = res.find((i) => i.id === parseInt(id));
-                setItem(unicoProd);
-                setLoading(false);
+                setItem(res.find((prod) => prod.id === parseInt(id)));
             })
             .catch((error) => {
                 console.error(error);
+            })
+            .finally(() => {
+                //otra accion
+                setLoading(false);
             });
     }, [id]);
 

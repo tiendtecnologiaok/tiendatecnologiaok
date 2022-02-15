@@ -1,28 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import CartWidget from './CartWidget/CartWidget';
-import './Navbar.css'
-// import ItemListContainer from './../ItemListContainer/ItemListContainer';
-import Counter from '../Counter/Counter';
-import ItemDetailContainer from '../ItemDetailContainer/ItemDetailContainer';
-import ItemDetail from '../ItemDetail/ItemDetail';
+import './Navbar.css';
 
 const Navbar = () => {
     return (
         <nav>
             <h1>Tecnologia-OK</h1>
             <ul>
-                <li>Computadoras</li>
-                <li>Celulares</li>
-                <li>Contacto</li>
+                <Link to="/">Home</Link>
+                <Link to="/category/notebooks">Notebooks</Link>
+                <Link to="/category/celulares">Celulares</Link>
+                <Link to="/category/auriculres">Auriculres</Link>
+                <Link to="/category/teclados">Teclados</Link>
             </ul>
             <div>
-            <CartWidget />
-            </div>
-            <div>
-            <Counter />
-            </div>
-            <div>
-            <ItemDetail />
+                <Link to="/cart">
+                    <CartWidget />
+                </Link>
             </div>
         </nav>
     );

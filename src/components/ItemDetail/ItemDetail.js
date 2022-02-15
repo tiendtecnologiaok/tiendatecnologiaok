@@ -1,46 +1,35 @@
-import {useState, useContext} from 'react'
-import Counter from "../Counter";
-import { item } from "../Item/items";
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { CartContext } from '../../context/CartContext';
+import Counter from '../Counter/Counter';
+import './ItemDetail.css';
 
-function ItemDetail({prod}) {
-    const [count, setCount] = useState(0)
-    const {cartList ,agregarAlCarrito}= useContext(CartContext)
+const ItemDetail = ({ item }) => {
+    const [showButton, setShowButton] = useState(false);
+    const { addToCart } = useContext(CartContext);
 
-    function onAdd (cant){
-        console.log(cant)
-        agregarAlCarrito({...prod, cantidad:cant})
-    }
-    console.log(cartList);
+    const onAdd = (cantidad) => {
+        //console.log(cantidad);
+        setShowButton(true);
+        addToCart(cantidad, item);
+    };
 
-    return (  
-        <div
-        style={{
-            display: 'flex',
-            justifyContent: 'center',
-            margin: '20px',
-        }}
-        >
-        <div>
-            <img
-                width={400}
-                src={item.img}
-                alt="img"
-                style={{ margin: '10px' }}
-            />
+    return (
+        <div className="container-detail">
+            <div className="container-img">
+                <img src={item.img} alt={item.name} />
+            </div>
+            <div>
+                <h2>{item.name}</h2>
+                <h2>{item.price}</h2>
+                {showButton ? (
+                    <Link to="/cart">Ir al carrito</Link>
+                ) : (
+                    <Counter stock={item.stock} initial={0} onAdd={onAdd} />
+                )}
+            </div>
         </div>
-        <div style={{ width: '50%' }}>
-            <h2>{item.name}</h2>
-            <h3>$ {item.price}</h3>
-            <h4 style={{ width: '70%' }}>{item.description}</h4>
-            <Link to="/">Voler al home</Link>
-        </div>
-        {!goCart ? (
-            <Counter stock={item.stock} onAdd={onAdd} />
-        ) : (
-            <Link to="/cart">Ir al carrito</Link>
-        )}
-        </div>        
-    )
+    );
 };
 
 export default ItemDetail;
