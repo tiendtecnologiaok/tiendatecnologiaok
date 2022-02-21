@@ -17,7 +17,7 @@ function App() {
                     <Route
                         path="/"
                         element={
-                            <ItemListContainer saludo="Bienvenidos a mi E-commerce 😎" />
+                            <ItemListContainer saludo="Bienvenidos" />
                         }
                     />
                     <Route
