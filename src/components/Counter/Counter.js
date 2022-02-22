@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { Message } from '../../context/Message.js';
 import './Counter.css';
 
 const Counter = ({ stock, initial, onAdd }) => {
+    const { handleMessage } = useContext(Message);
     const [number, setNumber] = useState(1);
 
     const add = () => {
-        number < stock && setNumber(number + 1);
+        number < stock
+            ? setNumber(number + 1)
+            : handleMessage('Máximo stock', 'warning');
     };
 
     const substract = () => {

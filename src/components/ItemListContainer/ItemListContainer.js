@@ -1,25 +1,46 @@
-import React, { useEffect , useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { traerProductos } from '../../api/products';
+import ItemList from '../ItemList/ItemList';
 
-const ItemListContainer = () => {
-    const [traerProductos] = useState([]);
-    // const { id } = useParams();
+const ItemListContainer = ({ saludo }) => {
+    const [items, setItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const { categoryId } = useParams();
 
-    // console.log(id);
-    
+    //tarea pesada
     useEffect(() => {
-        const traerProductos = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve("hola");
-            }, 2000);
-        })
-    },[]
-)
-    return (
-        <div>
-            <h1>ItemListContainer</h1>
-        </div>
-    )
-};
+        traerProductos
+            .then((res) => {
+                categoryId
+                    ? setItems(
+                          res.filter((prod) => prod.category === categoryId)
+                      )
+                    : setItems(res);
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+            .finally(() => {
+                //otra accion
+                setLoading(false);
+            });
+    }, [categoryId]);
 
+    //console.log(items);
+
+    return (
+        <>
+            {loading ? (
+                <h1>Cargando...</h1>
+            ) : (
+                <>
+                    <h2 style={{ textAlign: 'center' }}>{saludo}</h2>
+                    <ItemList items={items} />
+                </>
+            )}
+        </>
+    );
+};
 
 export default ItemListContainer;

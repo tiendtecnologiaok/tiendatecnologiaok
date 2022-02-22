@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/CartContext';
 
 const Cart = () => {
-    const { cart, vaciarCarrito } = useContext(CartContext);
+    const { cart, vaciarCarrito, deleteItem } = useContext(CartContext);
 
     return (
+        //react.fragment
         <>
             {cart.length === 0 ? (
                 <>
@@ -17,7 +18,10 @@ const Cart = () => {
                     {cart.map((producto) => (
                         <div key={producto.id}>
                             <h3>{producto.name}</h3>
-                            <button>X</button>
+                            <h3>{producto.cantidad}</h3>
+                            <button onClick={() => deleteItem(producto.id)}>
+                                X
+                            </button>
                         </div>
                     ))}
                     <button onClick={vaciarCarrito}>Vaciar carrito</button>
